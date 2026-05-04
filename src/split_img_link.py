@@ -19,10 +19,10 @@ def split_nodes_link(old_nodes):
             parts = text.split(f"[{anchor}]({url})", 1)
             if parts[0]:
                 new_nodes.append(TextNode(parts[0], TextType.TEXT))
-                new_nodes.append(TextNode(anchor, TextType.LINK, url ))
-                text = parts[1]
-            if text:
-                new_nodes.append(TextNode(text, TextType.TEXT))
+            new_nodes.append(TextNode(anchor, TextType.LINK, url))
+            text = parts[1]
+        if text:
+            new_nodes.append(TextNode(text, TextType.TEXT))
     return new_nodes
 def split_nodes_image(old_nodes):
     new_nodes = []
@@ -233,7 +233,6 @@ class TestTextToTextnodes(unittest.TestCase):
         self.assertIn(TextType.ITALIC, types_found)
         self.assertIn(TextType.CODE, types_found)
         
-
 
 
 
